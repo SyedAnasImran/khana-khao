@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 app.use(cors());
 app.use(express.json());
 app.use("/login", require("./Routes/login.js"));
+app.use("/signup", require("./Routes/signup.js"));
 app.use("/chooseSpot", require("./Routes/chooseSpot.js"));
 
 // Going Live

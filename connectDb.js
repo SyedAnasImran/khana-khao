@@ -4,7 +4,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 let clientOpts = {};
 clientOpts = { libDir: "D:\\instantclient_21_11" };
 oracledb.initOracleClient(clientOpts); // enable node-oracledb Thick mode
-let connection;
+
 async function connectDb() {
   try {
     con = await oracledb.getConnection({
