@@ -20,17 +20,19 @@ let User = {
       }
     });
   },
+  logIn: function (res, data) {
+    connectDb().then(async (con) => {
+      let result = await con.execute(this.find_query, [data[0]]); //data [ email, password ]
+      result = result.rows;
+      if (!result.length) {
+        res.send("User Not Found");
+      } else {
+        let isMatched =
+          data[1] === result[0].PASSWORD ? "LOGGED IN" : "Wrong Password";
+        res.send(isMatched);
+      }
+    });
+  },
 };
 
 module.exports = User;
-
-// const res = await con.executeMany(this.insertQuery, data);
-//       console.log("User Inserted");
-//       const res = await con.executeMany(
-//         `SELECT * FROM USERS where EMAIL=:ali@email.com`,
-//         data
-//       );
-//       con.close();
-//       res = res.rows;
-//       if (!res.length) return false;
-//       return true;
