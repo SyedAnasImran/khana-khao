@@ -18,6 +18,7 @@ let User = {
       } else {
         res.send("User Exists");
       }
+      con.close();
     });
   },
   logIn: function (res, data) {
@@ -31,6 +32,7 @@ let User = {
           data[1] === result[0].PASSWORD ? "LOGGED IN" : "Wrong Password";
         res.send(isMatched);
       }
+      con.close();
     });
   },
 };
