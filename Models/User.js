@@ -14,9 +14,9 @@ let User = {
       if (!result.length) {
         await con.execute(this.insert_query, data); // USER CREATED
         con.commit();
-        res.send("User Created");
+        res.send({ msg: "User Created" });
       } else {
-        res.send("User Exists");
+        res.send({ msg: "User Exists" });
       }
       con.close();
     });
@@ -26,11 +26,11 @@ let User = {
       let result = await con.execute(this.find_query, [data[0]]); //data [ email, password ]
       result = result.rows;
       if (!result.length) {
-        res.send("User Not Found");
+        res.send({ msg: "User Not Found" });
       } else {
         let isMatched =
-          data[1] === result[0].PASSWORD ? "LOGGED IN" : "Wrong Password";
-        res.send(isMatched);
+          data[1] === result[0].PASSWORD ? true : "Wrong Password";
+        res.send({ msg: isMatched });
       }
       con.close();
     });
