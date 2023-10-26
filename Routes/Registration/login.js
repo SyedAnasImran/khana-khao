@@ -5,7 +5,7 @@ const connectDb = require("../../connectDb.js");
 
 router.post("/", (req, res) => {
   const login_creds = req.body;
-
+  console.log("object");
   // connect database
   connectDb().then(async (con) => {
     // check if user exists
