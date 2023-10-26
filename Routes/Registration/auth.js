@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../../Models/User.js");
 const connectDb = require("../../connectDb.js");
 
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
   connectDb().then(async (con) => {
     //check if already loggedin
     let result = await User.isLoggedIn(con);

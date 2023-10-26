@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
         await User.insertLoggedIn(con, login_creds.email);
         console.log("User LoggedIn");
       }
-      // send login response response to frontend
+      // send login  response to frontend
       res.send({
         msg: isMatched,
       });
