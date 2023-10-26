@@ -8,11 +8,16 @@ app.get("/", (req, res) => {
   res.send("Landing");
 });
 
-// Avaailable Routes
 app.use(cors());
 app.use(express.json());
-app.use("/login", require("./Routes/login.js"));
-app.use("/signup", require("./Routes/signup.js"));
+
+// Registration Routes
+app.use("/auth", require("./Routes/Registration/auth.js"));
+app.use("/logout", require("./Routes/Registration/logout.js"));
+app.use("/login", require("./Routes/Registration/login.js"));
+app.use("/signup", require("./Routes/Registration/signup.js"));
+
+//Other Routes
 app.use("/chooseSpot", require("./Routes/chooseSpot.js"));
 
 // Going Live
