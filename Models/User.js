@@ -5,8 +5,6 @@ let User = {
 
   insert_query: `Insert into users(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
   find_query: `SELECT * FROM USERS where EMAIL=:1`,
-  insert_loggedin_query: `INSERT INTO TOKEN(USERID) VALUES(:1)`,
-  isloggedin_query: `SELECT * FROM TOKEN`,
   logout_query: `DELETE FROM TOKEN`,
 
   // _________Functions __________________________________________________________________________
@@ -23,17 +21,6 @@ let User = {
     con.commit();
   },
 
-  // insertLoggedin User
-  insertLoggedIn: async function (con, id) {
-    await con.execute(this.insert_loggedin_query, [id]);
-    con.commit();
-  },
-
-  // isLoggedIn
-  isLoggedIn: async function (con) {
-    let result = await con.execute(this.isloggedin_query);
-    return result.rows;
-  },
   //logout User
   logOutUser: async function (con) {
     await con.execute(this.logout_query);
