@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 // Registration Routes
-app.use("/logout", require("./Routes/Registration/logout.js"));
 app.use("/login", require("./Routes/Registration/login.js"));
 app.use("/signup", require("./Routes/Registration/signup.js"));
 

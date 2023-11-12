@@ -5,7 +5,6 @@ let User = {
 
   insert_query: `Insert into users(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
   find_query: `SELECT * FROM USERS where EMAIL=:1`,
-  logout_query: `DELETE FROM TOKEN`,
 
   // _________Functions __________________________________________________________________________
 
@@ -18,12 +17,6 @@ let User = {
   //Insert User
   insertUser: async function (con, user) {
     await con.execute(this.insert_query, user);
-    con.commit();
-  },
-
-  //logout User
-  logOutUser: async function (con) {
-    await con.execute(this.logout_query);
     con.commit();
   },
 };
