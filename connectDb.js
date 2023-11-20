@@ -8,7 +8,7 @@ oracledb.initOracleClient(clientOpts); // enable node-oracledb Thick mode
 async function connectDb() {
   try {
     con = await oracledb.getConnection({
-      user: "hr",
+      user: "projdb",
       password: "anas",
       connectString: "localhost",
     });

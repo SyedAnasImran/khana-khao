@@ -1,10 +1,8 @@
-const connectDb = require("../connectDb");
-
 let User = {
   // _________ Queries __________________________________________________________________________
 
-  insert_query: `Insert into users(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
-  find_query: `SELECT * FROM USERS where EMAIL=:1`,
+  insert_query: `Insert into CUSTOMERS(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
+  find_query: `SELECT * FROM CUSTOMERS where EMAIL=:1`,
 
   // _________Functions __________________________________________________________________________
 

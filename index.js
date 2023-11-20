@@ -15,8 +15,8 @@ app.use(express.json());
 app.use("/login", require("./Routes/Registration/login.js"));
 app.use("/signup", require("./Routes/Registration/signup.js"));
 
-//Other Routes
-app.use("/chooseSpot", require("./Routes/chooseSpot.js"));
+// Cafe Routes
+app.use("/getCafeNames", require("./Routes/Cafe/getCafeNames.js"));
 
 // Going Live
 app.listen(port, () => {
