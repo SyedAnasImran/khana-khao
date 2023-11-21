@@ -1,7 +1,7 @@
 let Cafe = {
   // _________ Queries __________________________________________________________________________
 
-  get_name_query: `SELECT first_name FROM CUSTOMERS `,
+  get_name_query: `SELECT CAFE_ID,CAFE_NAME,LOCATION,IMAGE FROM CAFE `,
 
   // _________Functions __________________________________________________________________________
 

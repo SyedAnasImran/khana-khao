@@ -5,8 +5,8 @@ const Cafe = require("../../Models/Cafe");
 
 router.get("/", (req, res) => {
   connectDb().then(async (con) => {
-    const r = await Cafe.getName(con);
-    res.send(r);
+    const result = await Cafe.getName(con);
+    res.send(result);
   });
 });
 
