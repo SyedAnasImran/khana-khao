@@ -16,7 +16,7 @@ app.use("/login", require("./Routes/Registration/login.js"));
 app.use("/signup", require("./Routes/Registration/signup.js"));
 
 // Cafe Routes
-app.use("/getCafeNames", require("./Routes/Cafe/getCafeNames.js"));
+app.use("/cafe", require("./Routes/Cafe/cafe.js"));
 
 // Going Live
 app.listen(port, () => {
