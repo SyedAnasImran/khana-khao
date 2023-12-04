@@ -1,7 +1,7 @@
 const express = require("express");
-const connectDb = require("../../connectDb.js");
+const connectDb = require("../connectDb.js");
 const router = express.Router();
-const Cafe = require("../../Models/Cafe.js");
+const Cafe = require("../Models/Cafe.js");
 
 router.get("/names", (req, res) => {
   connectDb().then(async (con) => {
