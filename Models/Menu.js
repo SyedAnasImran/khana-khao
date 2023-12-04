@@ -3,6 +3,8 @@ let Menu = {
 
   insert_query: `INSERT INTO MENU(ITEM_ID,ITEM_NAME,DESCRIPTION,PRICE,IMG,CAFE_ID)VALUES((SELECT MAX(ITEM_ID) FROM MENU WHERE CAFE_ID=:1)+10,:2,:3,:4,:5,:6)`,
   remove_query: `DELETE FROM  MENU where ITEM_ID=:1`,
+  remove_query_childRec: `DELETE FROM ORDER_ITEMS where ITEM_ID=:1`,
+
   update_price_query: `UPDATE MENU SET PRICE=:1 WHERE ITEM_ID=:2`,
 
   // _________Functions __________________________________________________________________________
@@ -16,8 +18,9 @@ let Menu = {
   },
 
   removeItem: async function (con, item_id) {
-    console.log(item_id);
-    const res = await con.execute(this.remove_query, [item_id]);
+    let res;
+    await con.execute(this.remove_query_childRec, [item_id]);
+    await con.execute(this.remove_query, [item_id]);
     con.commit();
     return res;
   },

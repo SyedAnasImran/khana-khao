@@ -7,7 +7,7 @@ let Orders = {
   customerOrders_query: `SELECT * from ORDERS where EMAIL=:1 and CAFE_ID=:2`,
   cafeOrders_query: `SELECT * from ORDERS where and CAFE_ID=:1`,
   getOrderItems_query: `SELECT O.ORDER_ID,M.Item_Name,M.Price,O.Qty,M.IMG FROM MENU M INNER JOIN ORDER_ITEMS O ON(M.Item_Id=O.ITEM_ID) WHERE ORDER_ID=:1`,
-
+  removeOrder_query: `delete from orders where order_id=:1`,
   // _________Functions _________________________________________________________________________
 
   // Insert Order
@@ -56,6 +56,10 @@ let Orders = {
 
   getOrderItems: async function (con, order_id) {
     const res = await con.execute(this.getOrderItems_query, [order_id]);
+    if (!res.rows.length) {
+      await con.execute(this.removeOrder_query, [order_id]);
+      con.commit();
+    }
     return res.rows;
   },
 };

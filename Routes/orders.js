@@ -40,6 +40,14 @@ router.post("/myOrders", (req, res) => {
     con.close();
   });
 });
+router.post("/cafeOrders", (req, res) => {
+  const cafe_id = req.body.cafe_id;
+  connectDb().then(async (con) => {
+    const cafeOrders = await Orders.cafeOrders(con, customer_id, cafe_id);
+    res.status(200).send({ cafeOrders });
+    con.close();
+  });
+});
 
 router.post("/items", (req, res) => {
   const order_id = req.body.ORDER_ID;
