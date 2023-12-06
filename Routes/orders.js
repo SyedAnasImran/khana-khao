@@ -41,10 +41,10 @@ router.post("/myOrders", (req, res) => {
   });
 });
 router.post("/cafeOrders", (req, res) => {
-  const cafe_id = req.body.cafe_id;
+  const cafe_id = req.body.CAFE_ID;
   connectDb().then(async (con) => {
-    const cafeOrders = await Orders.cafeOrders(con, customer_id, cafe_id);
-    res.status(200).send({ cafeOrders });
+    const result = await Orders.cafeOrders(con, cafe_id);
+    res.status(200).send({ result });
     con.close();
   });
 });
@@ -54,6 +54,16 @@ router.post("/items", (req, res) => {
   connectDb().then(async (con) => {
     const myOrderItems = await Orders.getOrderItems(con, order_id);
     res.status(200).send({ myOrderItems });
+    con.close();
+  });
+});
+
+router.post("/updateBill", (req, res) => {
+  const total = req.body.total;
+  const order_id = req.body.ORDER_ID;
+  connectDb().then(async (con) => {
+    const result = await Orders.updateTotal(con, total, order_id);
+    res.status(200).send({ result });
     con.close();
   });
 });

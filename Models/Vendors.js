@@ -1,7 +1,7 @@
 let Vendors = {
   // _________ Queries __________________________________________________________________________
 
-  insert_query: `Insert into VENDORS(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
+  registerCafe_query: `Insert into VENDORS(email,password,first_name,last_name) values(:1,:2,:3,:4)`,
   find_query: `SELECT * FROM VENDORS where EMAIL=:1`,
 
   // _________Functions __________________________________________________________________________
@@ -13,7 +13,7 @@ let Vendors = {
   },
 
   //Insert
-  insertUser: async function (con, user) {
+  registerCafe: async function (con, user) {
     await con.execute(this.insert_query, user);
     con.commit();
   },

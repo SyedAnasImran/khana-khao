@@ -17,8 +17,8 @@ router.post("/", async (req, res) => {
     }
     // create user
     else {
-      await User.insertUser(con, user);
-      res.send({ msg: "User Created" });
+      const msg = await User.insertUser(con, user);
+      res.send({ msg });
     }
     con.close();
   });

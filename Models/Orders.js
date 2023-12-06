@@ -5,9 +5,10 @@ let Orders = {
   insert_order_query: `INSERT INTO ORDERS(ORDER_ID, EMAIL, CAFE_ID, CONTACT , TOTAL) VALUES(:1,:2,:3,:4,:5)`,
   generateid_query: `SELECT MAX(ORDER_ID)+1 as "ID" FROM ORDERS`,
   customerOrders_query: `SELECT * from ORDERS where EMAIL=:1 and CAFE_ID=:2`,
-  cafeOrders_query: `SELECT * from ORDERS where and CAFE_ID=:1`,
+  cafeOrders_query: `SELECT * from ORDERS where CAFE_ID=:1`,
   getOrderItems_query: `SELECT O.ORDER_ID,M.Item_Name,M.Price,O.Qty,M.IMG FROM MENU M INNER JOIN ORDER_ITEMS O ON(M.Item_Id=O.ITEM_ID) WHERE ORDER_ID=:1`,
   removeOrder_query: `delete from orders where order_id=:1`,
+  updateTotal_query: `update orders set total=:1 where order_id=:2`,
   // _________Functions _________________________________________________________________________
 
   // Insert Order
@@ -50,6 +51,7 @@ let Orders = {
   },
   // get Cafe ORders
   cafeOrders: async function (con, cafe_id) {
+    console.log(cafe_id);
     const res = await con.execute(this.cafeOrders_query, [cafe_id]);
     return res.rows;
   },
@@ -61,6 +63,11 @@ let Orders = {
       con.commit();
     }
     return res.rows;
+  },
+  updateTotal: async function (con, total, order_id) {
+    const res = await con.execute(this.updateTotal_query, [total, order_id]);
+    con.commit();
+    return res;
   },
 };
 

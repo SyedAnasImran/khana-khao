@@ -14,8 +14,15 @@ let User = {
 
   //Insert User
   insertUser: async function (con, user) {
+    let regex = /^[a-zA-Z]+$/;
     await con.execute(this.insert_query, user);
-    con.commit();
+    if (regex.test(user[2]) && regex.test(user[3])) {
+      con.commit();
+      return "User Created";
+    }
+    //Rollback If user name is not alphabetical
+    con.rollback();
+    return "Choose Suitable Name | Special Characters Not allowed";
   },
 };
 

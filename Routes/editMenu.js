@@ -21,6 +21,15 @@ router.post("/editMenu/remove", (req, res) => {
   });
 });
 
+router.post("/editMenu/removeLast", (req, res) => {
+  connectDb().then(async (con) => {
+    const item = req.body;
+    const result = await Menu.removeLastItem(con, item.CAFE_ID);
+    res.status(200).send(result);
+    con.close();
+  });
+});
+
 router.post("/editMenu/editPrice", (req, res) => {
   connectDb().then(async (con) => {
     const item_id = req.body.ITEM_ID;
